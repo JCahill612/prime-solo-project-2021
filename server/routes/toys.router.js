@@ -1,0 +1,74 @@
+const express = require('express');
+const pool = require('../modules/pool');
+const router = express.Router();
+//import authentication - this way only users can access (server side).
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
+// Routes
+//GET route for Home Page
+router.get('/', (req, res) => {
+    console.log('in /toys GET');
+    // query string for Home page
+    let queryString = `SELECT "post_id", "post_name", "post_image", "post_body", "post_date", "username" FROM "post" 
+                       JOIN "user" ON "post".user_id = "user".id ORDER BY "post_date" DESC LIMIT '6';`;
+    pool.query(queryString).then(result => {
+        console.log('back from GET:', result.rows);
+        res.send(result.rows);
+    }).catch(err => {
+        console.log('Error in /toys GET:', err);
+        res.sendStatus(500);
+    });//end pool query
+});//end get route for Main Page
+
+//GET route for all toys
+router.get('/all', (req, res) => {
+    console.log('in /all GET')
+    let queryString =
+        `SELECT * FROM "post"
+    JOIN "user" ON "post".user_id = "user".id
+    JOIN "category" ON "post".post_cat = "category".cat_id
+    ORDER BY "post_id" DESC;`
+    pool.query(queryString).then((result) => {
+        res.send(result.rows);
+    }).catch((err) => {
+        console.log('Error in /toys/all GET:', err)
+        res.sendStatus(500);
+    });//end pool query
+});//end get router
+
+//GET route for toy Box Page
+router.get('/toybox', (req, res) => {
+    console.log('in /toys/toybox GET');
+    //query string for toy Box page
+    let queryString = `SELECT "post_id", "post_name", "post_image", "post_date", "username" FROM "post" 
+                       JOIN "user" ON "post".user_id = "user".id ORDER BY "post_date";`;
+    pool.query(queryString).then(result => {
+        console.log('back from /toys/toybox GET', result.rows);
+        res.send(result.rows);
+    }).catch(error => {
+        console.log('Error in /toys/toybox GET');
+        res.sendStatus(500);
+    })//end pool query
+});//end get router for toy Box
+
+//POST route for creating posts
+router.post('/addtoy', rejectUnauthenticated, (req, res) => {
+    console.log('in /toys/addtoy POST', req.body);
+    let image = req.body.image;
+    let description = req.body.description;
+    let catId = req.body.catId;
+    let id = req.body.user;
+    let title = req.body.title;
+    //queryString
+    let queryString = `INSERT INTO "post" ("post_name", "post_body", "post_image", "post_cat", "user_id")
+                       VALUES ($1, $2, $3, $4, $5);`
+    pool.query(queryString, [title, description, image, id]).then((result)=> {
+        res.sendStatus(201);
+    }).catch((error)=> {
+        res.sendStatus(500);
+        console.log('Error in /toys/addtoy:', error)
+    })
+});//end post route
+
+
+module.exports = router;
