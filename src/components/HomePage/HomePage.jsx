@@ -8,6 +8,7 @@ import { Grid, Box, Typography, Card, CardMedia, CardContent, CardActionArea, Ca
 
 const styles = () => {
     return ({
+
         page: {
             margin: '0px',
             overflow: 'hidden',
@@ -38,12 +39,13 @@ const styles = () => {
             width: '450px',
             letterSpacing: '5px',
             paddingTop: '0px',
-            backgroundColor: '#c760ff'
+            backgroundColor: '#c760ff',
+
         },
         card: {
             boxShadow: '0px 0px 2px #28283e',
-            maxWidth: '90%',
-            margin: '18px 0px',
+            maxWidth: '80%',
+            margin: '0px 0px',
             padding: '5px'
         },
         grid: {
@@ -81,12 +83,12 @@ class HomePage extends Component {
                 <Grid container className={classes.grid} spacing={2}>
                     {this.props.reduxState.homeReducer.map((toy, index) => {
                         return (
-                            <Grid key={index}>
+                            <Grid item xs={3} key={index} >
                                 
                                 {toy.post_cat === 1 | 2 | 3 &&
-                                    <Card variant="outlined" className={classes.card}>
-                                        <CardActionArea>
-                                            <CardContent>
+                                    <Card variant="outlined"  className={classes.card} >
+                                        <CardActionArea >
+                                            <CardContent >
                                                 <Typography variant="h6">{toy.post_name}</Typography>
                                                 <CardMedia className={classes.media} onClick={(event) => this.handleClick(toy)} image={toy.post_image} title={toy.post_name} />
                                             </CardContent>

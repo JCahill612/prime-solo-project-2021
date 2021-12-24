@@ -32,7 +32,7 @@ const styles = () => {
       paddingBottom: '5px'
     },
     media: {
-      height: '275px',
+      height: '450px',
       maxWidth: '450px',
       position: 'center',
       boxShadow: '0px 0px 1px 0px'
@@ -45,25 +45,25 @@ const styles = () => {
     },
     card: {
       boxShadow: '0px 0px 2px #28283e',
-      maxWidth: '90%',
+      maxWidth: '80%',
       width: '450px',
-      margin: '18px 0px',
+      margin: '20px 0px',
       padding: '5px'
     },
     toyGrid: {
       paddingTop: '10px',
-      marginRight: '2%',
+      marginRight: '1%',
       marginLeft: '1%',
       width: '100%'
     },
     user: {
-      fontSize: '17px',
+      fontSize: '15px',
     },
     welcomeGrid: {
       width: '100%'
     },
     name: {
-      fontSize: '60px',
+      fontSize: '40px',
       fontStyle: 'oblique',
     }
   })
@@ -98,7 +98,7 @@ class UserPage extends Component {
           {this.props.account.map((toy) => {
             let date = moment(toy.post_date).format('MMM Do, YYYY')
             return (
-              <Grid key={toy.id}>
+              <Grid item xs={3} key={toy.id}>
                 
                 {toy.post_cat === 1 | 2 | 3 &&
                   <Card variant="outlined" className={classes.card}>

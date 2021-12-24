@@ -100,7 +100,7 @@ class AllToys extends Component {
                     {this.props.reduxState.allToysReducer.map((toy, index) => {
                         let date = moment(toy.post_date).format('MMM Do, YYYY')
                         return (
-                            <Grid key={index}>
+                            <Grid item xs={2} key={index}>
 
                               
                                     <Card variant="outlined" className={classes.card}>
