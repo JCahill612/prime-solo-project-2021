@@ -6,6 +6,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { Box, Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+
 //styles for material ui
 const styles = () => {
   return ({
@@ -14,7 +15,7 @@ const styles = () => {
       float: 'left',
       lineHeight: '50px',
       letterSpacing: '3px',
-      paddingLeft: '5%',
+      paddingLeft: '2%',
       color: 'white',
       paddingTop: '20px'
     },
@@ -48,7 +49,10 @@ const styles = () => {
       margin: '0px 0px',
       backgroundColor: 'black',
       color: 'white'
-    }
+    },
+    logo: {
+      maxWidth: 160,
+    },
   });
 };
 
@@ -60,6 +64,7 @@ class Nav extends Component {
     return (
       <Box className={classes.nav} boxShadow={8}>
 
+        <Typography img src="logo.png" alt="logo" className={classes.logo}></Typography>
         <Link to="/home"><Typography variant="h3" className={classes.navTitle}>Blind Bag Market</Typography></Link>
         <nav className={classes.navRight}>
 
@@ -67,7 +72,7 @@ class Nav extends Component {
 
           <Link to="/allToys"><Button className={classes.navLink}>All Toys</Button></Link>
 
-          <Link to="/trade"><Button className={classes.navLink}>Trade</Button></Link>
+          <Link to="/trade"><Button className={classes.navLink}>Message</Button></Link>
           <Link to="/account">
 
             {this.props.user.id ?

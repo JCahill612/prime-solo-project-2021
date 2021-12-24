@@ -116,7 +116,7 @@ class TradePage extends Component {
                                                 <CardMedia className={classes.media} onClick={(event) => this.handleClick(toy)} image={toy.post_image} title={toy.post_name} />
                                             </CardContent>
                                             <CardActions>
-                                                <Button onClick={(event) => this.handleClick(toy)} className={classes.button}>DETAILS</Button>
+                                                <Button onClick={(event) => this.handleClick(toy)} className={classes.button}>request trade</Button>
                                                 <Typography className={classes.user}>Posted by {toy.username} on {date}</Typography>
                                                 <Typography variant="h6">{toy.cat_name}</Typography>
                                             </CardActions>
