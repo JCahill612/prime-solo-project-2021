@@ -1,74 +1,151 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-//import authentication - this way only users can access (server side).
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const {
+  rejectUnauthenticated,
+  rejectUnauthorized
+} = require('../modules/authentication-middleware');
+const multer  = require('multer')
+const {storage,cloudinary} = require('../modules/cloudinary')
+const upload = multer({storage})
 
-// Routes
-//GET route for Home Page
+/**
+ * GET route template
+ */
+
 router.get('/', (req, res) => {
-    console.log('in /toys GET');
-    // query string for Home page
-    let queryString = `SELECT "post_id", "post_name", "post_image", "post_body", "post_date", "username" FROM "post" 
-                       JOIN "user" ON "post".user_id = "user".id ORDER BY "post_date" DESC LIMIT '6';`;
-    pool.query(queryString).then(result => {
-        console.log('back from GET:', result.rows);
-        res.send(result.rows);
-    }).catch(err => {
-        console.log('Error in /toys GET:', err);
-        res.sendStatus(500);
-    });//end pool query
-});//end get route for Main Page
 
-//GET route for all toys
-router.get('/all', (req, res) => {
-    console.log('in /all GET')
-    let queryString =
-        `SELECT * FROM "post"
-    JOIN "user" ON "post".user_id = "user".id
-    JOIN "category" ON "post".post_cat = "category".cat_id
-    ORDER BY "post_id" DESC;`
-    pool.query(queryString).then((result) => {
-        res.send(result.rows);
-    }).catch((err) => {
-        console.log('Error in /toys/all GET:', err)
-        res.sendStatus(500);
-    });//end pool query
-});//end get router
+  const queryText = `SELECT toys.id, "name", description, toy_image_url, status, zip_code, toys_userid  from toys JOIN "user" ON toys.toys_userid = "user".id WHERE status = 'available'`
 
-//GET route for toy Box Page
-router.get('/toybox', (req, res) => {
-    console.log('in /toys/toybox GET');
-    //query string for toy Box page
-    let queryString = `SELECT "post_id", "post_name", "post_image", "post_date", "username" FROM "post" 
-                       JOIN "user" ON "post".user_id = "user".id ORDER BY "post_date";`;
-    pool.query(queryString).then(result => {
-        console.log('back from /toys/toybox GET', result.rows);
-        res.send(result.rows);
-    }).catch(error => {
-        console.log('Error in /toys/toybox GET');
-        res.sendStatus(500);
-    })//end pool query
-});//end get router for toy Box
+  pool.query(queryText)
+    .then((response) => res.send(response.rows))
+    .catch((err) => {
+      console.log('Get posts error ', err);
+      res.sendStatus(500);
+    }); 
 
-//POST route for creating posts
-router.post('/addtoy', rejectUnauthenticated, (req, res) => {
-    console.log('in /toys/addtoy POST', req.body);
-    let image = req.body.image;
-    let description = req.body.description;
-    let catId = req.body.catId;
-    let id = req.body.user;
-    let title = req.body.title;
-    //queryString
-    let queryString = `INSERT INTO "post" ("post_name", "post_body", "post_image", "post_cat", "user_id")
-                       VALUES ($1, $2, $3, $4, $5);`
-    pool.query(queryString, [title, description, image, id]).then((result)=> {
-        res.sendStatus(201);
-    }).catch((error)=> {
+});
+
+
+router.get('/user', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `SELECT * FROM toys WHERE toys_userid = $1`
+
+  pool.query(queryText,[req.user.id])
+    .then((response) => res.send(response.rows))
+    .catch((err) => {
+      console.log('Get posts error ', err);
+      res.sendStatus(500);
+    }); 
+
+});
+
+
+
+
+  router.get('/all', rejectUnauthenticated, rejectUnauthorized , (req, res) => {
+
+    const queryText = `SELECT * FROM toys ORDER BY id DESC`
+  
+    pool.query(queryText)
+      .then((response) => res.send(response.rows))
+      .catch((err) => {
+        console.log('Get posts error ', err);
         res.sendStatus(500);
-        console.log('Error in /toys/addtoy:', error)
-    })
-});//end post route
+      }); 
+  
+  });
+
+
+  router.post('/', rejectUnauthenticated , upload.single('image'), (req, res) => {
+    // POST route code here
+  
+    const {title, description} = req.body
+  
+    const queryText =  `INSERT INTO "toys" ("name", "description", "toy_image_url", "toy_image_name", "toys_userid")
+    VALUES ($1, $2, $3, $4, $5)`
+
+    pool.query(queryText,[title, description, req.file.path, req.file.filename, req.user.id])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('Create toy posts error ', err);
+      cloudinary.uploader.destroy(req.file.filename).then(()=>{
+        res.sendStatus(500);
+      })
+    }); 
+  
+  });
+
+
+  router.delete('/user/:id', rejectUnauthenticated, async (req, res) => {
+    // DELETE route code here
+    const {id} = req.params
+    const queryText =  `DELETE FROM toys WHERE id = $1 AND toys_userid = $2 RETURNING toy_image_name`
+    try {
+        const response = await pool.query(queryText,[id,req.user.id])
+        await cloudinary.uploader.destroy(response.rows[0].toy_image_name)
+        res.sendStatus(200)
+    } catch (error) {
+      console.log('Deleting user toys error ', err);
+      res.sendStatus(500);
+    }
+    
+  });
+
+
+  
+
+router.put('/user/:id', rejectUnauthenticated , (req, res) => {
+
+  const id = req.params.id
+  const {title, description} = req.body
+  
+    const queryText = `UPDATE toys
+    SET name = $1, description = $2
+    WHERE id = $3 AND toys_userid = $4 AND status='available';`
+
+    pool.query(queryText,[title, description, id ,req.user.id])
+    .then(() => 
+      res.sendStatus(201))
+    .catch((err) => {
+      console.log('user toy update error ', err);
+      
+        res.sendStatus(500);
+
+    }); 
+
+});
+
+
+
+router.put('/image/:id', rejectUnauthenticated , upload.single('image'), async (req, res) => {
+  // POST route code here
+  const {id} = req.params
+
+  const getImageNameQuery =  `SELECT toy_image_name FROM toys WHERE id = $1 AND toys_userid = $2 
+  AND status='available;`
+
+  const queryText =  `UPDATE toys
+  SET toy_image_url = $1, toy_image_name = $2
+  WHERE id = $3 AND toys_userid = $4 RETURNING toy_image_url;`
+
+
+  try {
+    const response =  await pool.query(getImageNameQuery,[id,req.user.id])
+    const imageUrl = await pool.query(queryText,[req.file.path, req.file.filename, id, req.user.id])
+
+    await cloudinary.uploader.destroy(response.rows[0].toy_image_name)
+
+    res.send(imageUrl.rows[0].toy_image_url)
+
+  } catch (error) {
+
+    console.log('Creating posts error ', error);
+      res.sendStatus(500);
+  }
+
+});
+
 
 
 module.exports = router;
