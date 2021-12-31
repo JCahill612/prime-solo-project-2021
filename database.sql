@@ -4,60 +4,38 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
-CREATE TABLE "user"
-(
+CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
-    "username" varchar(100),
-    "password" varchar(255),
-    "user_email" varchar(255),
-    "user_img" varchar(1000),
-    "user_location" varchar(255),
-    "user_date" DATE DEFAULT CURRENT_DATE
+    "username" VARCHAR (80) UNIQUE NOT NULL,
+    "password" VARCHAR (1000) NOT NULL,
+	"user_role" varchar(255) NOT NULL DEFAULT 'regular',
+	"user_email" varchar(255) UNIQUE NOT NULL,
+	"user_address" varchar(255) UNIQUE NOT NULL,
+	"zip_code" INTEGER NOT NULL,
+	"phone_no" varchar(255) UNIQUE NOT NULL
 );
 
-
-CREATE TABLE "category"
-(
-    "cat_id" SERIAL PRIMARY KEY NOT NULL,
-    "cat_name" varchar(25) NOT NULL,
-    "cat_description" varchar(255) NOT NULL
-);
-
-CREATE TABLE "post"
-(
-    "post_id" SERIAL PRIMARY KEY NOT NULL,
-    "post_name" varchar(100) NOT NULL,
-    "post_body" varchar(5000) NOT NULL,
-    "post_image" varchar(1000) NOT NULL,
-    "post_date" DATE NOT NULL DEFAULT CURRENT_DATE,
-    "post_cat" integer NOT NULL,
-    "user_id" integer NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES "user"(id),
-    FOREIGN KEY (post_cat) REFERENCES "category"(cat_id)
-);
-
-INSERT INTO "category" ('cat_name', 'cat_description')
-VALUES
-    ('Buy', 'Buyers Category'),
-    ('Sell', 'Sellers Category'),
-    ('Trade', 'Traders Category');
-
-CREATE TABLE message (
-    "id" integer DEFAULT nextval('messages_id_seq'::regclass) PRIMARY KEY,
-    "first_name" character varying(80),
-    "email" character varying(200),
-    "message_body" character varying(500),
-    "create_date" date
-);
-
-CREATE TABLE message_recipient (
+CREATE TABLE "toys" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" character varying(80),
-    "message_id" integer
+    "name" VARCHAR (80) NOT NULL,
+	"description" VARCHAR (80) NOT NULL,
+	"toy_image_url" varchar(1000),
+	"toy_image_name" varchar(255),
+	"status" varchar(255) NOT NULL DEFAULT 'available',
+	"toys_userid" bigint NOT NULL,
+	FOREIGN KEY ("toys_userid") REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE user_cart_toy (
+CREATE TABLE "trade" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" character varying(80),
-    "toys_id" character varying(1000)
+    "offering_userid" bigint NOT NULL,
+	"requested_userid" bigint NOT NULL,
+	"offered_toyid" bigint NOT NULL,
+	"requested_toyid" bigint NOT NULL,
+	"status" varchar(255) NOT NULL DEFAULT 'incomplete',
+	"message" varchar(255),
+	FOREIGN KEY ("offering_userid") REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY ("requested_userid") REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY ("offered_toyid") REFERENCES "toys"(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY ("requested_toyid") REFERENCES "toys"(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
