@@ -30,6 +30,12 @@ const tradeOffers = (state = [], action) => {
   };
 
 
+  
+
+  
+
+
+
 export default combineReducers({
   tradeOffers,
   tradeRequests,

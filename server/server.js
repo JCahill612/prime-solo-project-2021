@@ -1,22 +1,16 @@
-
 const express = require('express');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-const bodyParser = require('body-parser');
-const sessionMiddleware = require('./modules/session-middleware');
 
+const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
 const toysRouter = require('./routes/toys.router');
-const detailRouter = require('./routes/detail.router');
-const accountRouter = require('./routes/account.router');
-const editRouter = require('./routes/edit.router');
-
-//heroku require path
-const path = require('path');
+const tradeRouter = require('./routes/trade.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,18 +25,11 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/toys', toysRouter);
-app.use('/details', detailRouter)
-app.use('/accounts', accountRouter);
-app.use('/account/edit', editRouter);
+app.use('/api/toys', toysRouter);
+app.use('/api/trade', tradeRouter);
 
 // Serve static files
 app.use(express.static('build'));
-
-// Adding for HEROKU - CATCH ALL -> Go here instead if above routes are not found.
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
 
 // App Set //
 const PORT = process.env.PORT || 5000;

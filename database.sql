@@ -3,7 +3,6 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
-
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -15,6 +14,7 @@ CREATE TABLE "user" (
 	"phone_no" varchar(255) UNIQUE NOT NULL
 );
 
+
 CREATE TABLE "toys" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR (80) NOT NULL,
@@ -25,6 +25,7 @@ CREATE TABLE "toys" (
 	"toys_userid" bigint NOT NULL,
 	FOREIGN KEY ("toys_userid") REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 CREATE TABLE "trade" (
     "id" SERIAL PRIMARY KEY,
@@ -39,3 +40,6 @@ CREATE TABLE "trade" (
 	FOREIGN KEY ("offered_toyid") REFERENCES "toys"(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY ("requested_toyid") REFERENCES "toys"(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+
