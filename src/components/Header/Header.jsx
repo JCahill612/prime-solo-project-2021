@@ -40,7 +40,7 @@ export default function Header() {
           )}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/home" className="headerLink">
-                <h2 className="nav-title">Blind Bag Market</h2>
+                <h2 className="nav-title">Blind Bag</h2>
             </Link>
           </Typography>
 
