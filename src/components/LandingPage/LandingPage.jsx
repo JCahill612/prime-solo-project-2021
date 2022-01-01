@@ -6,7 +6,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState('Welcome to the Blind Bag Market!');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -19,12 +19,9 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <p>
-            Welcome to the Blind Bag Market! A place to trade blind bag/surprise toys to complete your collections faster!
-          </p>
 
           <p>
-            
+          A place to trade blind bag/surprise toys to complete your collections faster!
           </p>
 
           <p>
