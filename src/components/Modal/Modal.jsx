@@ -42,7 +42,7 @@ export default function BasicModal(props) {
         else if (index < 0) {
             return (
                 <>
-                <Typography>You have not posted/available for trade toys</Typography>
+                <Typography>You have not posted for trade toys</Typography>
                 <Button variant="contained" component={Link} to = {'/posttoy'}>Add Toys</Button>
                </>
             )}

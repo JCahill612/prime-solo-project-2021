@@ -20,14 +20,20 @@ function LandingPage() {
       <div className="grid">
         <div className="grid-col grid-col_8">
 
+          <h4>
+          A place to trade blind bag/surprise toys to complete your collections faster. 
+          <p></p>
+          </h4>
           <p>
-          A place to trade blind bag/surprise toys to complete your collections faster!
-          </p>
 
+          </p>
+          <p></p>
           <p>
-            To get started, simply Register/Login then add the toys you are ready to trade and begin browsing the market!
-            When you find the toy you are interested in, select "trade" and add the toy you are willing to trade to get it.
-            If your offer is accepted, you will then be able to view contact details and arrage the trade!
+            Getting started is easy!
+            <ul>Simply Register/Login</ul> 
+            <ul>Add the toys you are ready to trade and begin browsing the market!</ul>
+            <ul>When you find the toy you are interested in, select "trade" and add the toy you are willing to trade to get it.</ul>
+            <ul> Once your offer is accepted, you will then be able to view contact details and arrage the trade!</ul>
           </p>
         </div>
         {/* <div className="grid-col grid-col_4">
