@@ -42,7 +42,6 @@ function RegisterForm() {
 
       <Grid item>
           <TextField
-            id="outlined-name"
             label="Username"
             value={username}
             type="text"
@@ -52,17 +51,15 @@ function RegisterForm() {
       </Grid>
       <Grid item>
       <TextField
-            id="outlined-name"
             label="Enter Password"
             value={password}
-            type="text"
+            type="password"
             required
             onChange={(event) => setPassword(event.target.value)}
           />
       </Grid>
       <Grid item>
       <TextField
-            id="outlined-name"
             label="Enter Email"
             value={email}
             type="email"
@@ -72,7 +69,6 @@ function RegisterForm() {
        </Grid>
       <Grid item>
       <TextField
-            id="outlined-name"
             label="Enter Address"
             value={address}
             type="text"
@@ -82,7 +78,6 @@ function RegisterForm() {
        </Grid>
       <Grid item>
       <TextField
-            id="outlined-name"
             label="Enter Zip"
             value={zip}
             type="number"
@@ -92,7 +87,6 @@ function RegisterForm() {
        </Grid>
       <Grid item>
       <TextField
-            id="outlined-name"
             label="Enter Phone"
             value={phone}
             type="number"

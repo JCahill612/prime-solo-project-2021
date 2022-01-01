@@ -123,7 +123,7 @@ router.put('/image/:id', rejectUnauthenticated , upload.single('image'), async (
   const {id} = req.params
 
   const getImageNameQuery =  `SELECT toy_image_name FROM toys WHERE id = $1 AND toys_userid = $2 
-  AND status='available;`
+  AND status='available';`
 
   const queryText =  `UPDATE toys
   SET toy_image_url = $1, toy_image_name = $2

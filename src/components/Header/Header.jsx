@@ -45,7 +45,7 @@ export default function Header() {
           </Typography>
 
 
-          {user.id === null &&
+          {!user.id &&
           <Link to="/login" className="headerLink">
               Login / Register
           </Link>
@@ -53,9 +53,13 @@ export default function Header() {
 
         {user.id && (
           <>
-            <Link to="/user" className="headerLink">
+            {/* <Link to="/user" className="headerLink">
               Home
-            </Link>
+            </Link> */}
+
+            {/* <Link to="/login" className="headerLink">
+              Login / Register
+            </Link> */}
 
             <Link to="/info" className="headerLink">
               Info Page
