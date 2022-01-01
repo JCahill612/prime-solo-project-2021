@@ -183,7 +183,7 @@ export default function TradeOffers() {
               axios.put(`/api/trade/accept/${id}`).then(()=>
   
               {
-                  swal("Accepted!! offeror and offeree can contact each other now", {
+                  swal("Accepted!! You can now view contact info", {
                   icon: "warning",
                 })
                 dispatch({
@@ -217,10 +217,10 @@ export default function TradeOffers() {
     
           <TableHead>
               <TableRow>
-                <TableCell>Offered Toy</TableCell>
-                <TableCell >Offered Toy Image</TableCell>
-                <TableCell >Requested Toy</TableCell>
+                <TableCell>Requested Toy</TableCell>
                 <TableCell >Requested Toy Image</TableCell>
+                <TableCell >Offered Toy</TableCell>
+                <TableCell >Offered Toy Image</TableCell>
                 <TableCell >Status</TableCell>
                 <TableCell >Message</TableCell>
                 <TableCell >Reject Offer</TableCell> 
