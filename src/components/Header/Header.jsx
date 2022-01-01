@@ -23,6 +23,7 @@ export default function Header() {
 
     
       <AppBar position="static">
+        
         <Toolbar>
         {user.id && (
           <>
@@ -40,7 +41,7 @@ export default function Header() {
           )}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/home" className="headerLink">
-                <h2 className="nav-title">Blind Bag</h2>
+                <h2 className="nav-title">Blind Bag Market</h2>
             </Link>
           </Typography>
 
@@ -61,9 +62,9 @@ export default function Header() {
               Login / Register
             </Link> */}
 
-            <Link to="/info" className="headerLink">
+            {/* <Link to="/info" className="headerLink">
               Info Page
-            </Link>
+            </Link> */}
             
             <div className = "headerLink"
             onClick={() => dispatch({ type: 'LOGOUT' })} > Logout </div>
