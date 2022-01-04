@@ -77,15 +77,13 @@ const ViewToys = () => {
                     Available Toys
                 </Typography>
             </Grid>
-            <Grid item container style={{maxWidth:"80%"}} justifyContent="center">
+            <Grid item container style={{maxWidth:"80%", padding: 5}} justifyContent="center">
             {filteredList.map(toy=>
 
             <Grid item key={toy.id} xs={3}>
-                <Card sx={{ maxWidth: 345,minWidth : 275, minHeight : 550}}>
+                <Card sx={{ maxWidth: 375,minWidth : 300, minHeight : 550, padding : 2}}>
                 <CardMedia
                     component="img"
-                    padding = "3px"
-                    padding bottom = "3px"
                     width="250"
                     height="350"
                     image= {toy.toy_image_url}
