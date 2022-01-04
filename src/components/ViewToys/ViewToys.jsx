@@ -84,9 +84,9 @@ const ViewToys = () => {
                 <Card sx={{ maxWidth: 345,minWidth : 275 }}>
                 <CardMedia
                     component="img"
-                    padding="3px"
-                    width="100"
-                    height="300"
+                    padding="5px"
+                    width="200"
+                    maxheight="300"
                     image= {toy.toy_image_url}
                     alt= {toy.name}
                 />
