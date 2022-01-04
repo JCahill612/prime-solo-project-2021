@@ -25,11 +25,24 @@ function LandingPage() {
           <p></p>
           </h4>
           <p>
-            Getting started is easy!
-            <ul>Simply Register/Login</ul> 
-            <ul>Add the toys you are ready to trade and begin browsing the market!</ul>
-            <ul>When you find the toy you are interested in, select "trade" and add the toy you are willing to trade to get it.</ul>
-            <ul> Once your offer is accepted, you will then be able to view contact details and arrage the trade!</ul>
+          <h3>Getting started is easy!</h3>
+      <p></p>
+            <li>Simply Register/Login</li> 
+            <li>Add the toys you are ready to trade and begin browsing the market!</li>
+            <li>You can browse all toys or search by name or zip code.</li>
+            <li>When you find the toy you are interested in, click "trade" and add the toy you are willing to trade to get it.</li>
+            
+      <p></p>
+      <p></p>
+
+      <h3>After you request the trade</h3>
+        <li>The owner of the toy will have the option to accept or decline the trade.</li>
+        <li>If your trade is accepted, you will be able to view the owners info and arrage the trade.</li>
+        <li>If the offer is declined, both toys will be returned to the available toy list and you will have the option to trade with someone else.</li>
+        <li>If you change your mind and no longer wish to trade, you can delete your offer at any time. </li>
+        
+        <p></p>
+        <h3>Have Fun and Happy Browsing!</h3>
           </p>
         </div>
           <div className="grid-col grid-col_4">
