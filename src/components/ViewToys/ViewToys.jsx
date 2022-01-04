@@ -145,10 +145,3 @@ const ViewToys = () => {
 export default ViewToys
 
 
-// description: "This is a toy and i like it and its not fun"
-// id: 2
-// name: "the mod toy"
-// status: "available"
-// toy_image_name: "Toy Pictures/gykzksw9bantglnf6tkq"
-// toy_image_url: "https://res.cloudinary.com/waizzy/image/upload/v1640684469/Toy%20Pictures/gykzksw9bantglnf6tkq.png"
-// toys_userid: "1"

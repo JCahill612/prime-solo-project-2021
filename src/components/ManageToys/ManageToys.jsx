@@ -166,7 +166,7 @@ export default function ManageToys() {
     <p>Zip Code: {user.zip_code}</p>
   </Box>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-      <TableHead margin="10px">
+      <TableHead >
       <h4> Your Toys</h4>
           <TableRow>
             <TableCell>Toy Name</TableCell>
