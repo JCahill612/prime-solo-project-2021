@@ -91,6 +91,7 @@ const PostToy = () => {
         <>
         <Grid container direction="column" spacing={4} alignContent="center" style={{marginTop:"3rem"}}>
             <Grid item>
+              <h4>Post Your Toy</h4>
                 <TextField
                 required
                 id="outlined-required"
