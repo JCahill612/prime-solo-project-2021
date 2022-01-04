@@ -95,7 +95,7 @@ export default function ManageToys() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
      dispatch({
          type : 'FETCH_TOYS'
@@ -113,7 +113,7 @@ export default function ManageToys() {
 
 
   const toyList = useSelector(state => state.toy.userToys)
-
+  const user = useSelector((store) => store.user);
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - toyList.length) : 0;
@@ -158,11 +158,15 @@ export default function ManageToys() {
   }
 
   return (
-
     <TableContainer component={Paper} style={{maxWidth:"90%",margin:"auto",marginTop:"5rem"}}>
+    <Box component="span"
+    sx={{ display: 'inline-block', mx: '5px', transform: 'scale(.9)' }}>
+    <h2>Welcome, {user.username}!</h2>
+    <p>Street Address: {user.user_address}</p>
+    <p>Zip Code: {user.zip_code}</p>
+  </Box>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
       <TableHead>
-      <h3>Manage Your Toys</h3>
           <TableRow>
             <TableCell>Toy Name</TableCell>
             <TableCell >Image</TableCell>

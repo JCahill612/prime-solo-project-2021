@@ -16,7 +16,8 @@ export default function Drawer(props) {
         { name: "Post Your Toys", link: "/posttoy"},
         { name: "Manage Your Toys", link: "/managetoys"},
         { name: "My Trade Offers", link: "/tradeoffers"},
-        { name: "View Trade Requests", link: "/traderequests"}
+        { name: "View Trade Requests", link: "/traderequests"},
+        { name: "Your Info", link:"/user"}
       ]
 
   const adminRoutes = 
