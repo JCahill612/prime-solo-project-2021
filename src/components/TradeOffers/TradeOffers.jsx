@@ -163,10 +163,10 @@ export default function TradeOffers() {
           <TableHead>
           <h3>Trade Offers</h3>
               <TableRow>
-                <TableCell>Requested Toy</TableCell>
+                <TableCell>My Toy</TableCell>
+                <TableCell >My Toy Image</TableCell>
+                <TableCell >Requested Toy</TableCell>
                 <TableCell >Requested Toy Image</TableCell>
-                <TableCell >Offered Toy</TableCell>
-                <TableCell >Offered Toy Image</TableCell>
                 <TableCell >Status</TableCell>
                 <TableCell >Remove request</TableCell>
                 <TableCell >Contact</TableCell> 
