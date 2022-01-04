@@ -87,7 +87,7 @@ router.post('/', rejectUnauthenticated , async (req, res) => {
     VALUES ($1, $2, $3, $4, $5)`
 
     const updateQueryText = `UPDATE toys
-    SET status = 'In trade process'
+    SET status = 'Trade Processing'
     WHERE id = $1 OR id = $2 AND status='available';`
 
     try {
@@ -117,7 +117,7 @@ router.put('/reject/:id', rejectUnauthenticated , async (req, res) => {
 
   const updateQueryText = `UPDATE toys
   SET status = 'available'
-  WHERE id = $1 OR id = $2 AND status='In trade process';`
+  WHERE id = $1 OR id = $2 AND status='Trade Processing';`
 
 
   try {
@@ -147,7 +147,7 @@ router.put('/accept/:id', rejectUnauthenticated , async (req, res) => {
 
   const updateQueryText = `UPDATE toys
   SET status = 'traded'
-  WHERE id = $1 OR id = $2 AND status='In trade process';`
+  WHERE id = $1 OR id = $2 AND status='Trade Processing';`
 
   try {
       
@@ -171,7 +171,7 @@ router.put('/accept/:id', rejectUnauthenticated , async (req, res) => {
 
     const updateQueryText = `UPDATE toys
     SET status = 'available'
-    WHERE id = $1 OR id = $2 AND status='In trade process';`
+    WHERE id = $1 OR id = $2 AND status='Trade Processing';`
 
     try {
       
