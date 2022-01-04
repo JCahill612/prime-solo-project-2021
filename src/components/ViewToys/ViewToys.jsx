@@ -86,7 +86,7 @@ const ViewToys = () => {
                     component="img"
                     padding="5px"
                     width="200"
-                    maxheight="300"
+                    maxheight="200"
                     image= {toy.toy_image_url}
                     alt= {toy.name}
                 />
