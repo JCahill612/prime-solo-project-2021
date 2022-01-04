@@ -80,7 +80,7 @@ const ViewToys = () => {
             <Grid item container style={{maxWidth:"80%", padding: 5}} justifyContent="center">
             {filteredList.map(toy=>
 
-            <Grid item key={toy.id} xs={3}>
+            <Grid item key={toy.id} xs={4}>
                 <Card sx={{ maxWidth: 375,minWidth : 300, minHeight : 550, padding : 2}}>
                 <CardMedia
                     component="img"
