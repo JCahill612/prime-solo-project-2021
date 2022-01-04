@@ -15,7 +15,7 @@ export default function Drawer(props) {
       [
         { name: "Post Your Toys", link: "/posttoy"},
         { name: "Manage Your Toys", link: "/managetoys"},
-        { name: "My trade Offers", link: "/tradeoffers"},
+        { name: "My Trade Offers", link: "/tradeoffers"},
         { name: "View Trade Requests", link: "/traderequests"}
       ]
 
