@@ -48,6 +48,7 @@ function TablePaginationActions(props) {
   };
 
   return (
+
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
         onClick={handleFirstPageButtonClick}
@@ -157,10 +158,11 @@ export default function ManageToys() {
   }
 
   return (
+
     <TableContainer component={Paper} style={{maxWidth:"90%",margin:"auto",marginTop:"5rem"}}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-
       <TableHead>
+      <h3>Manage Your Toys</h3>
           <TableRow>
             <TableCell>Toy Name</TableCell>
             <TableCell >Image</TableCell>

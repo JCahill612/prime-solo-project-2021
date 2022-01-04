@@ -161,6 +161,7 @@ export default function TradeOffers() {
           <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
     
           <TableHead>
+          <h3>Trade Offers</h3>
               <TableRow>
                 <TableCell>Requested Toy</TableCell>
                 <TableCell >Requested Toy Image</TableCell>
