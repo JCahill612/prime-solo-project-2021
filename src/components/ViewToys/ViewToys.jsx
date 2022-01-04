@@ -81,7 +81,7 @@ const ViewToys = () => {
             {filteredList.map(toy=>
 
             <Grid item key={toy.id} xs={3}>
-                <Card sx={{ maxWidth: 345,minWidth : 275 }}>
+                <Card sx={{ maxWidth: 345,minWidth : 275, maxHeight : 200 }}>
                 <CardMedia
                     component="img"
                     padding="5px"
