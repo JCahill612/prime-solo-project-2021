@@ -162,11 +162,12 @@ export default function ManageToys() {
     <Box component="span"
     sx={{ display: 'inline-block', mx: '5px', transform: 'scale(.9)' }}>
     <h2>Welcome, {user.username}!</h2>
-    <p>Street Address: {user.user_address}</p>
+    <p>Address: {user.user_address}</p>
     <p>Zip Code: {user.zip_code}</p>
   </Box>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
       <TableHead>
+          <h4>Your Toys</h4>
           <TableRow>
             <TableCell>Toy Name</TableCell>
             <TableCell >Image</TableCell>
