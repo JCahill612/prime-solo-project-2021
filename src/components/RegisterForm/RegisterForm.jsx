@@ -67,15 +67,7 @@ function RegisterForm() {
             onChange={(event) => setemail(event.target.value)}
           />
        </Grid>
-      <Grid item>
-      <TextField
-            label="Enter Address"
-            value={address}
-            type="text"
-            required
-            onChange={(event) => setaddress(event.target.value)}
-          />
-       </Grid>
+
       <Grid item>
       <TextField
             label="Enter Zip"
@@ -95,7 +87,7 @@ function RegisterForm() {
         />
        </Grid>
       <Grid item>
-        <Button disabled = { !username || !password || !zip || !phone || !email || !address}
+        <Button disabled = { !username || !password || !zip || !phone || !email}
         onClick={registerUser} variant="contained">Register</Button>
         </Grid>
       </Grid>
