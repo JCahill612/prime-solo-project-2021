@@ -320,9 +320,6 @@ export default function TradeOffers() {
            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
              Phone Number : {contactsDetail[0].phone_no}
            </Typography>
-           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-             Address :  {contactsDetail[0].user_address}
-           </Typography>
            </>
          </Box>
        </Modal>
