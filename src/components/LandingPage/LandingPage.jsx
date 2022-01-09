@@ -20,7 +20,7 @@ function LandingPage() {
       <div className="grid">
         <div className="grid-col grid-col_8">
 
-          <h4>Blind bags (also referred to as surprise toys) involve small and collectible toys hidden inside packaging of some. There are now hundreds of different blind bag lines, from old favorites such as My Little Pony, Transformers and Teenage Mutant Ninja Turtles to new fads like Tokidoki, Zomlings and the hugely popular L.O.L. Surprise! dolls.</h4>
+          <h4>Blind bags (also referred to as surprise toys) involve small and collectible toys hidden inside packaging. There are now hundreds of different blind bag lines, from old favorites such as My Little Pony, Transformers and Teenage Mutant Ninja Turtles to new fads like Tokidoki, Zomlings and the hugely popular L.O.L. Surprise! dolls.</h4>
           <h4>Since you dont know which surprise toy you will get, you might not get the toy you wanted...
 
     </h4>
